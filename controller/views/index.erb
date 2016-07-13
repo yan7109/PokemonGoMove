@@ -1,0 +1,66 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0;" name="viewport" />
+<title>Pokemon Go Controller By Kevin</title>
+<style type="text/css">
+  .buttons { margin-top: 20px; width: 300px; text-align: center; }
+  .buttons .move-btn { padding: 40px 40px; margin: 10px; }
+  .buttons .btn-center { margin: 10px auto; display: block; }
+</style>
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
+<script type="text/javascript">
+	function moveInterval() {
+		var randomNum = parseInt(20 * Math.random());
+		var number = "0.0000" + (40 + randomNum);
+		console.log("moveInterval:" + number);
+		return parseFloat(number);
+	}
+	function changeCurrentLocation(direction) {
+		var longitude = parseFloat($("#longitude").val());
+		var latitude = parseFloat($("#latitude").val());
+
+        if (direction == "left") {
+        	longitude -= moveInterval();
+        } else if (direction == "right") {
+        	longitude += moveInterval();
+        } else if (direction == "up") {
+        	latitude += moveInterval();
+        }  else if (direction == "down") {
+        	latitude -= moveInterval();
+        }
+        return {"lat" : latitude, "lon" : longitude};
+    }
+	$(function(){
+		$(".move-btn").click(function(){
+			var direction = $(this).data('direction');
+			var location = changeCurrentLocation(direction);
+			$("#longitude").val(location["lon"]);
+			$("#latitude").val(location["lat"]);
+			$.ajax({
+				type : "POST",
+				url : "/update",
+				data : location,
+				dataType : "JSON",
+				success : function (data) {
+
+				}
+			});
+		});
+	});
+</script>
+</head>
+<body>
+	<div>
+		Latitude：<input id="latitude" type="text" value="37.799"/>
+		Longitude：<input id="longitude" type="text" value="-122.4715"/>
+	</div>
+	<div class="buttons">
+    <button class="move-btn btn-center" data-direction="up">Up</button>
+    <button class="move-btn" data-direction="left">Left</button>
+    <button class="move-btn" data-direction="right">Right</button>
+    <button class="move-btn btn-center" data-direction="down">Down</button>
+	</div>
+</body>
+</html>
