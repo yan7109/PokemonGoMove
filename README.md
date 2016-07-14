@@ -1,8 +1,8 @@
 # Pokemon GO GPS Emulator
 
-This is an English translation of the original ReadMe posted by huacnlee/PokemonGoMove on GitHub. The original ReadMe was written in Chinese...
+This is an English translation of the original ReadMe posted by huacnlee/PokemonGoMove on GitHub. The original ReadMe was written in Chinese.
 
-This project uses Xcode Debug mode [Simulating a Location at Runtime](https://developer.apple.com/library/ios/recipes/xcode_help-debugger/articles/simulating_locations.html) to spoof GPS locations for non-jailbroken iOS devices.
+This project uses Xcode Debug mode [Simulating a Location at Runtime](https://developer.apple.com/library/ios/recipes/xcode_help-debugger/articles/simulating_locations.html) to spoof GPS locations for non-jailbroken iOS devices. This allows players of Pokemon GO to send movement commands over a computer as opposed to doing the actual walking.
 
 ## Main Components
 - a blank iOS project, used in Debug mode for `Simulate Location`
