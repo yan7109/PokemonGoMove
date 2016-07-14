@@ -11,7 +11,7 @@ This project uses Xcode Debug mode [Simulating a Location at Runtime](https://de
 
 ## System Requirement
 
-- Xcode installed
+- Xcode installed (Obviously you need a Mac, an Apple Developer Account is not needed if you have iOS 9 and above)
 - Any iOS device with Pokemon GO installed
 
 ## Installation Instructions
@@ -48,6 +48,8 @@ Use Ctrl-C to stop
 <img width="456" alt="2016-07-13 11 22 11" src="https://cloud.githubusercontent.com/assets/5518/16790893/18843eb2-48ec-11e6-919e-40d9cfb3ca74.png">
 
 You can now interact with the webpage and the AppleScript will transmit the new GPS signal to the iOS device. Now feel free to relax and play the game without moving your legs.
+
+Clicking in the web browser on the computer can be a bit of a pain. Mainly because it triggers Xcode to popup every time a move is made. Instead, find out the local ip of your Mac. Then, go to the hosted server port via Safari or Chrome from another iPhone or iPad to use it as a remote, the address will be something like 192.168.1.x:3001.
 
 ### Screencaps
 
