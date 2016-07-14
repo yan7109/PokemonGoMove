@@ -18,7 +18,8 @@ This project uses Xcode Debug mode [Simulating a Location at Runtime](https://de
 
 ### Open foo.xcodeproj
 
-Connect your iOS device and run the project.
+Connect your iOS device and run the project. Remember in to turn simulate location on.
+Very important: Debug->Simulate Location->PokemonLocation is checked, otherwise it will not work.
 
 ### Start web server
 
