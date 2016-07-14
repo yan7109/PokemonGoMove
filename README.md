@@ -11,7 +11,7 @@ This project uses Xcode Debug mode [Simulating a Location at Runtime](https://de
 
 ## System Requirement
 
-- Xcode installed and Apple developer account
+- Xcode installed
 - Any iOS device with Pokemon GO installed
 
 ## Installation Instructions
