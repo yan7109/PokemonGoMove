@@ -14,11 +14,6 @@ This project uses Xcode Debug mode [Simulating a Location at Runtime](https://de
 - Xcode installed and Apple developer account
 - Any iOS device with Pokemon GO installed
 
-## 系统需求
-
-- Xcode 以及 iOS 开发者账户
-- 任意 iOS 设备，安装好 Pokemon GO
-
 ## Installation Instructions
 
 ### Open foo.xcodeproj
