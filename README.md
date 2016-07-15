@@ -1,39 +1,37 @@
-# Pokemon GO 移动工具
+# Pokemon GO GPS Emulator
 
-这个项目是通过 Xcode Debug 的 [Simulating a Location at Runtime](https://developer.apple.com/library/ios/recipes/xcode_help-debugger/articles/simulating_locations.html) 来实现给 **非越狱** 的 iOS 设备模拟出虚拟的 GPS 定位地址。
+This project uses Xcode Debug mode [Simulating a Location at Runtime](https://developer.apple.com/library/ios/recipes/xcode_help-debugger/articles/simulating_locations.html) to spoof GPS locations for non-jailbroken iOS devices. This allows players of Pokemon GO to send movement commands over a computer as opposed to doing the actual walking.
 
-由于目前 Pokemon GO 在中国还未开放，所以你需要模拟出到其他国家。
+## Main Components
+- a blank iOS project, used in Debug mode for `Simulate Location`
+- a web interface made via Sinatra to interact with PokemonGo from [PokemonGoControllerSuite](https://github.com/adin283/PokemonGoControllerSuite/tree/master/PokemonGoController)
+- an AppleScript for sending GPS location signals
 
-## 主要功能
+## System Requirement
 
-- 一个空白的 iOS 项目，用于 Debug 模式链接 `Simulate Location`;
-- 一个 Sinatra 写的 Web 界面，用于移动，HTML, JS 代码来自于 [PokemonGoControllerSuite](https://github.com/adin283/PokemonGoControllerSuite/tree/master/PokemonGoController);
-- 一个 AppleScript 用于自动点击 Xcode 的菜单，以便能不断的将修改过的坐标发送到设备上。
+- Xcode installed (Obviously you need a Mac, an Apple Developer Account is not needed if you have iOS 9 and above)
+- Any iOS device with Pokemon GO installed
 
-## 系统需求
+## Installation Instructions
 
-- Xcode 以及 iOS 开发者账户
-- 任意 iOS 设备，安装好 Pokemon GO
+### Open foo.xcodeproj
 
-## 使用教程
+Connect your iOS device and run the project. Remember in to turn simulate location on.
+Very important: Debug->Simulate Location->PokemonLocation is checked, otherwise it will not work.
 
-### 打开 foo.xcodeproj
-
-编译运行到 iOS 设备里面。
-
-### 启动 Web 服务
+### Start web server
 
 ```bash
 sudo gem install sinatra -s http://gems.ruby-china.org
 ```
 
-进入项目目录
+Go into the terminal, and run the following
 
 ```
 ./start-web
 ```
 
-看到控制台输出，这样的信息表示成功了，然后浏览器打开 http://127.0.0.1:3001
+You should see the debug messages below, now in a web browser open http://127.0.0.1:3001
 
 ```
 == Sinatra (v1.4.7) has taken the stage on 3001 for development with backup from Puma
@@ -47,9 +45,11 @@ Use Ctrl-C to stop
 
 <img width="456" alt="2016-07-13 11 22 11" src="https://cloud.githubusercontent.com/assets/5518/16790893/18843eb2-48ec-11e6-919e-40d9cfb3ca74.png">
 
-然后在浏览器里面点击上下左右来移动，内部会自动调用 AppleScript 将事件传输给 Xcode，把 GPS 坐标更新到手机上，达到移动的目的。
+You can now interact with the webpage and the AppleScript will transmit the new GPS signal to the iOS device. Now feel free to relax and play the game without moving your legs.
 
-### 截图
+Clicking in the web browser on the computer can be a bit of a pain. Mainly because it triggers Xcode to popup every time a move is made. Instead, find out the local ip of your Mac. Then, go to the hosted server port via Safari or Chrome from another iPhone or iPad to use it as a remote, the address will be something like 192.168.1.x:3001.
+
+### Screencaps
 
 <img width="1096" alt="2016-07-13 11 22 56" src="https://cloud.githubusercontent.com/assets/5518/16790900/2f3dc9f2-48ec-11e6-85eb-c2efa52699a7.png">
 
@@ -57,6 +57,6 @@ Use Ctrl-C to stop
 
 <img width="480" src="https://ruby-china-files.b0.upaiyun.com/photo/2016/85aa2df3ded3d77143308f05a0809939.jpg!large" />
 
-### 参考:
+### References:
 
 - https://ruby-china.org/topics/30510

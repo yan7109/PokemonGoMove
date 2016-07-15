@@ -10,10 +10,10 @@
   .buttons .btn-center { margin: 10px auto; display: block; }
 </style>
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
-<script type="text/javascript">
+<script type="text/javascript">   
 	function moveInterval() {
 		var randomNum = parseInt(20 * Math.random());
-		var number = "0.000" + (250 + randomNum);
+		var number = "0.000" + (10 + randomNum);
 		console.log("moveInterval:" + number);
 		return parseFloat(number);
 	}
@@ -31,8 +31,30 @@
         	latitude -= moveInterval();
         }
         return {"lat" : latitude, "lon" : longitude};
-    }
+  }
 	$(function(){
+    $(document).keydown(function(e) {
+      var dir = ''
+      if (e.which == 37) {
+        dir = 'left';
+      } else if (e.which == 38) {
+        dir = 'up';
+      } else if (e.which == 39) {
+        dir = 'right';
+      } else if (e.which == 40) {
+        dir = 'down';
+      }
+      var location = changeCurrentLocation(dir);    
+			$("#longitude").val(location["lon"]);
+			$("#latitude").val(location["lat"]);
+			$.ajax({
+				type : "POST",
+				url : "/update",
+				data : location,
+				dataType : "JSON",
+				success : function (data) {}
+      });
+    });
 		$(".move-btn").click(function(){
 			var direction = $(this).data('direction');
 			var location = changeCurrentLocation(direction);
@@ -53,8 +75,8 @@
 </head>
 <body>
 	<div>
-		Latitude：<input id="latitude" type="text" value="37.799"/>
-		Longitude：<input id="longitude" type="text" value="-122.4715"/>
+		Latitude：<input id="latitude" type="text" value="37.402881"/>
+		Longitude：<input id="longitude" type="text" value="-121.926491"/>
 	</div>
 	<div class="buttons">
     <button class="move-btn btn-center" data-direction="up">Up</button>
