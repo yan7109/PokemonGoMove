@@ -22,7 +22,8 @@ Very important: Debug->Simulate Location->PokemonLocation is checked, otherwise 
 ### Start web server
 
 ```bash
-sudo gem install sinatra -s http://gems.ruby-china.org
+sudo gem install sinatra #If you are outside of China
+sudo gem install sinatra -s http://gems.ruby-china.org #If you are in China
 ```
 
 Go into the terminal, and run the following
