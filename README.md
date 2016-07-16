@@ -2,6 +2,12 @@
 
 This project uses Xcode Debug mode [Simulating a Location at Runtime](https://developer.apple.com/library/ios/recipes/xcode_help-debugger/articles/simulating_locations.html) to spoof GPS locations for non-jailbroken iOS devices. This allows players of Pokemon GO to send movement commands over a computer as opposed to doing the actual walking.
 
+## Warning: Improper Use of this Tool Will Get You Banned!
+As reported on [reddit](https://www.reddit.com/r/pokemongo/comments/4ry7my/psa_spoofing_gps_locations_will_get_you_banned/), spoofing your GPS coordinates in game could get you banned. Anecdotally, when you change your GPS coordinates drastically in a short period of time (say NYC to SF), you will be soft banned for anywhere between 10 mins to 3 hours. However, there have not been cases of permanent ban, so do this at your discretion. My guess is that the Niantic servers compute a delta distance over delta t and sets a threshold on the speed. Anything beyond the threshold will get your banned.
+
+### Workaround
+Shutdown all the apps running in the background in your iPhone. Before starting the web server, go on Google Maps to look up the longtitude and latitude of your current location. Set the coordinates in the web interface (You should also change the .gpx files and index.erb to your current location, so that you don't need to do it every time). Run the Debug app and then open your map app (Google Maps for instance) and verify that you can move around via the web interface. Try not to move too far away from your current location during the game as sometimes the OS shuts down the debug app (this happens when the iPhone resources is low, say you are inside a Gym: rendering takes up a lot of resources) and you'll be teleported back to your current location. If you moved too far away, you will risk being banned :)
+
 ## Main Components
 - a blank iOS project, used in Debug mode for `Simulate Location`
 - a web interface made via Sinatra to interact with PokemonGo from [PokemonGoControllerSuite](https://github.com/adin283/PokemonGoControllerSuite/tree/master/PokemonGoController)
