@@ -11,7 +11,7 @@ The latest repo has a startup routine that sets your startup location to be your
 ## Main Components
 - A blank iOS project, used in Debug mode for `Simulate Location`
 - A web interface made via Sinatra to interact with PokemonGo from [PokemonGoControllerSuite](https://github.com/adin283/PokemonGoControllerSuite/tree/master/PokemonGoController)
-- an AppleScript for sending GPS location signals
+- An AppleScript for sending GPS location signals
 
 ## System Requirement
 
@@ -23,7 +23,7 @@ The latest repo has a startup routine that sets your startup location to be your
 ### Start web server
 
 ```bash
-sudo gem install sinatra #If you are outside of China
+sudo gem install sinatra
 ```
 If you are in China, you can specify the source via -s http://gems.ruby-china.org
 
@@ -60,9 +60,7 @@ Now in a web browser open http://127.0.0.1:3001, you should see the following:
 
 <img width="456" alt="2016-07-13 11 22 11" src="https://cloud.githubusercontent.com/assets/5518/16790893/18843eb2-48ec-11e6-919e-40d9cfb3ca74.png">
 
-You can now interact with the webpage and the AppleScript will transmit the new GPS signal to the iOS device. Now feel free to relax and play the game without moving your legs.
-
-Clicking in the web browser on the computer can be a bit of a pain. Mainly because it triggers Xcode to popup every time a move is made. Instead, find out the local ip of your Mac. Then, go to the hosted server port via Safari or Chrome from another iPhone or iPad to use it as a remote, the address will be something like 192.168.1.x:3001.
+You can now interact with the webpage (try press left, up, right, down arrow keys on your keyboard) and the AppleScript will transmit the new GPS signal to the iOS device. Now feel free to relax and play the game without moving your legs.
 
 ### Crowdsourced Maps that Help You Catch all Pokemons:
 Having trouble finding new pokemons? Try looking up the following map tools to find the pokemon you are looking for!
