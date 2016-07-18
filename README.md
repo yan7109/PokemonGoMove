@@ -32,7 +32,7 @@ Go into the terminal, and run the following:
 ```
 ./start-web 
 ```
-This will try to set your startup location as your current location via your IP address. If this fails, it will default to a location in California. If you would like to startup with a specific location you can run the following:
+This will try to set your startup location as your current location via your IP address. Note, this will not be very accurate as the API only returns up to 4 decimal places. If this fails, it will default to a location in California. If you would like to startup with a specific location you can run the following:
 
 ```
 ./start-web -l 123.456 -o 78.90 
