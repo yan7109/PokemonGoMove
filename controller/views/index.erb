@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0;" name="viewport" />
-<title>Pokemon Go 移动工具</title>
+<title>Pokemon Go Web Interface</title>
 <style type="text/css">
   .buttons { margin-top: 20px; width: 300px; text-align: center; }
   .buttons .move-btn { padding: 40px 40px; margin: 10px; }
@@ -21,30 +21,30 @@
 		var longitude = parseFloat($("#longitude").val());
 		var latitude = parseFloat($("#latitude").val());
 
-        if (direction == "left") {
-        	longitude -= moveInterval();
-        } else if (direction == "right") {
-        	longitude += moveInterval();
-        } else if (direction == "up") {
-        	latitude += moveInterval();
-        }  else if (direction == "down") {
-        	latitude -= moveInterval();
-        }
-        return {"lat" : latitude, "lon" : longitude};
-  }
+		if (direction == "left") {
+			longitude -= moveInterval();
+		} else if (direction == "right") {
+			longitude += moveInterval();
+		} else if (direction == "up") {
+			latitude += moveInterval();
+		}  else if (direction == "down") {
+			latitude -= moveInterval();
+		}
+		return {"lat" : latitude, "lon" : longitude};
+	}
 	$(function(){
-    $(document).keydown(function(e) {
-      var dir = ''
-      if (e.which == 37) {
-        dir = 'left';
-      } else if (e.which == 38) {
-        dir = 'up';
-      } else if (e.which == 39) {
-        dir = 'right';
-      } else if (e.which == 40) {
-        dir = 'down';
-      }
-      var location = changeCurrentLocation(dir);    
+		$(document).keydown(function(e) {
+			var dir = ''
+			if (e.which == 37) {
+				dir = 'left';
+			} else if (e.which == 38) {
+				dir = 'up';
+			} else if (e.which == 39) {
+				dir = 'right';
+			} else if (e.which == 40) {
+				dir = 'down';
+			}
+			var location = changeCurrentLocation(dir);    
 			$("#longitude").val(location["lon"]);
 			$("#latitude").val(location["lat"]);
 			$.ajax({
@@ -53,8 +53,8 @@
 				data : location,
 				dataType : "JSON",
 				success : function (data) {}
-      });
-    });
+			});
+		});
 		$(".move-btn").click(function(){
 			var direction = $(this).data('direction');
 			var location = changeCurrentLocation(direction);

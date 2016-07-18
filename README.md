@@ -56,6 +56,13 @@ You can now interact with the webpage and the AppleScript will transmit the new 
 
 Clicking in the web browser on the computer can be a bit of a pain. Mainly because it triggers Xcode to popup every time a move is made. Instead, find out the local ip of your Mac. Then, go to the hosted server port via Safari or Chrome from another iPhone or iPad to use it as a remote, the address will be something like 192.168.1.x:3001.
 
+### Crowdsourced Maps that Help You Catch all Pokemons:
+Having trouble finding new pokemons? Try looking up the following map tools to find the pokemon you are looking for!
+- [Pokecrew - Around the World] (http://www.pokecrew.com/?latitude=37.38870308649053&longitude=-122.08420737304687&zoom=14)
+- [Pokemapper - Around the World] (https://pokemapper.co/)
+- [Gotta Catch'em All - Boston] (https://www.google.com/maps/d/viewer?mid=1mA00u2SuvuNtGCifo0E-BVzTTWc)
+- [Pokemon Go Washington - Seattle Area] (https://www.google.com/maps/d/viewer?mid=136ZOge0QKEGZpWMqa9XGe_iyu6Y)
+
 ### Screencaps
 
 <img width="1096" alt="2016-07-13 11 22 56" src="https://cloud.githubusercontent.com/assets/5518/16790900/2f3dc9f2-48ec-11e6-85eb-c2efa52699a7.png">
