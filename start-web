@@ -1,1 +1,57 @@
+echo
+echo "Initializing..."
+echo
+echo "Did you know you can now specify the GPS coordinates at the startup?"
+echo "$ ./start-web -l 1.0 -o 2.0  #startup lat=1.0 and long=2.0 "
+echo "$ ./start-web                #startup with current location base on ip"
+echo
+
+latitude=  longtitude= 
+
+while getopts l:o: opt; do
+  case $opt in
+  l)
+      latitude=$OPTARG
+      ;;
+  o)
+      longtitude=$OPTARG
+      ;;
+  esac
+done
+shift $((OPTIND - 1))
+
+if [ -z "$latitude" ] || [ -z "$longtitude" ]; then
+  echo "Getting user's current GPS coordinates..."
+  location=$(curl -s http://whatismycountry.com/ | sed -n 's/.*Coordinates \(.*\)<.*/\1/p')
+  if [ -z "$location" ]; then
+    echo "Cannot get GPS coordinates"
+  else
+    location_array=($location)
+    latitude=${location_array[0]}
+    longtitude=${location_array[1]}
+    echo "Got "$location
+  fi
+fi
+
+if [ ! -z "$latitude" ] && [ ! -z "$longtitude" ]; then
+  if (( ${latitude%.*} >= -90 )) && (( ${latitude%.*} <= 90 )) && (( ${longtitude%.*} >= -180 )) && (( ${longtitude%.*} <= 180 )); then
+    echo "Setting latitude to: "$latitude", longtitude to: "$longtitude
+  else
+    echo "Error: Invalid latitude (must be >=-90 && =<90) and longtitude (must be >=-180 && <=180)"
+    exit
+  fi
+else
+  # Cannot get a valid pair of GPS coordinates
+  echo "Using default GPS coordinates: latitude=37.402881; longtitude=-121.926491"
+  latitude=37.402881 #default latitude
+  longtitude=-121.926491 #default longtitude
+fi
+
+# Replace the value of latitude and longtitude
+index_file=controller/views/index.erb
+sed -i "" "s/var START_LATITUDE.*$/var START_LATITUDE = \"$latitude\"\;/g" $index_file
+sed -i "" "s/var START_LONGTITUDE.*$/var START_LONGTITUDE = \"$longtitude\"\;/g" $index_file
+echo
+echo
+
 ruby controller/app.rb
