@@ -11,6 +11,8 @@
 </style>
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
 <script type="text/javascript">   
+	var START_LATITUDE = "37.3239";
+	var START_LONGTITUDE = "-121.9144";
 	function moveInterval() {
 		var randomNum = parseInt(20 * Math.random());
 		var number = "0.000" + (10 + randomNum);
@@ -32,6 +34,10 @@
 		}
 		return {"lat" : latitude, "lon" : longitude};
 	}
+	$('document').ready(function() {
+		$("#latitude").val(START_LATITUDE);
+		$("#longitude").val(START_LONGTITUDE);
+  })
 	$(function(){
 		$(document).keydown(function(e) {
 			var dir = ''
@@ -75,8 +81,8 @@
 </head>
 <body>
 	<div>
-		Latitude：<input id="latitude" type="text" value="37.402881"/>
-		Longitude：<input id="longitude" type="text" value="-121.926491"/>
+		Latitude：<input id="latitude" type="text"/>
+		Longitude：<input id="longitude" type="text"/>
 	</div>
 	<div class="buttons">
     <button class="move-btn btn-center" data-direction="up">Up</button>
