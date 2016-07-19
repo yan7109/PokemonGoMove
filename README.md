@@ -2,7 +2,7 @@
 
 Merged with [PokemonMap] (https://github.com/AHAAAAAAA/PokemonGo-Map), we now have a full interactive spoofer plus map of the nearby pokemons.
 
-<img width="1072" src=https://cloud.githubusercontent.com/assets/6434237/16943599/56ad4c1a-4d51-11e6-84c0-fef003750282.png>
+<img width="1072" src=https://cloud.githubusercontent.com/assets/6434237/16967597/8d5126d4-4dbe-11e6-9c06-3c91f38a8ea2.png>
 <img width="480" src=https://cloud.githubusercontent.com/assets/6434237/16934843/3a988d10-4d0f-11e6-84e6-6dffe48a9e30.PNG>
 
 This project uses Xcode Debug mode [Simulating a Location at Runtime](https://developer.apple.com/library/ios/recipes/xcode_help-debugger/articles/simulating_locations.html) to spoof GPS locations for non-jailbroken iOS devices. This allows players of Pokemon GO to send movement commands over a computer as opposed to doing the actual walking.
@@ -83,7 +83,7 @@ Use Ctrl-C to stop
 ```
 
 Now in your browser go to http://localhost:3001. The default location set by the move server will be based on your IP, so it will not be very accurate. Now go ahead and enter the address, to the address you set the map originally. See screencap below:
-<img width="1072" src=https://cloud.githubusercontent.com/assets/6434237/16943599/56ad4c1a-4d51-11e6-84c0-fef003750282.png>
+<img width="1072" src=https://cloud.githubusercontent.com/assets/6434237/16967597/8d5126d4-4dbe-11e6-9c06-3c91f38a8ea2.png>
 
 Now your two servers are completely sync'd.
 
