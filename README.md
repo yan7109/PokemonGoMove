@@ -1,6 +1,8 @@
-# Pokemon GO GPS Emulator
+# Pokemon GO GPS Emulator with Built-In Pokemon/Pokestop/Gym Map
 
-<img width="1072" src=https://cloud.githubusercontent.com/assets/6434237/16940158/bc3917d6-4d3c-11e6-896b-0d800f4971a1.png>
+Merged with [PokemonMap] (https://github.com/AHAAAAAAA/PokemonGo-Map), we now have a full interactive spoofer plus map of the nearby pokemons.
+
+<img width="1072" src=https://cloud.githubusercontent.com/assets/6434237/16943599/56ad4c1a-4d51-11e6-84c0-fef003750282.png>
 <img width="480" src=https://cloud.githubusercontent.com/assets/6434237/16934843/3a988d10-4d0f-11e6-84e6-6dffe48a9e30.PNG>
 
 This project uses Xcode Debug mode [Simulating a Location at Runtime](https://developer.apple.com/library/ios/recipes/xcode_help-debugger/articles/simulating_locations.html) to spoof GPS locations for non-jailbroken iOS devices. This allows players of Pokemon GO to send movement commands over a computer as opposed to doing the actual walking.
@@ -15,6 +17,7 @@ The latest repo has a startup routine that sets your startup location to be your
 - A blank iOS project, used in Debug mode for `Simulate Location`
 - A web interface made via Sinatra to interact with PokemonGo from [PokemonGoControllerSuite](https://github.com/adin283/PokemonGoControllerSuite/tree/master/PokemonGoController)
 - An AppleScript for sending GPS location signals
+- A pokemon map module forked from [PokemonMap] (https://github.com/AHAAAAAAA/PokemonGo-Map)
 
 ## System Requirement
 
@@ -23,24 +26,23 @@ The latest repo has a startup routine that sets your startup location to be your
 
 ## Installation Instructions
 
-### Start web server
+### Start web servers
 
 ```bash
+git clone https://github.com/yan7109/PokemonGoMoveAndMap.git
+cd PokemonGoMoveAndMap/map
+sudo pip install
 sudo gem install sinatra
+python example.py -a google -u [gmail_address] -p [gmail_password] -l "997 Marine Drive, San Fran, CA" -st 5 -ar 2 -dp -dg
 ```
-If you are in China, you can specify the source via -s http://gems.ruby-china.org
+This will start the map server with your credentials, you can look at additional parameters in the [PokemonMap repo] (https://github.com/AHAAAAAAA/PokemonGo-Map) if you would like to ignore certain pokemons, change distance, etc. It would have started a server at port 5000, and you can check it will look like the following:
 
-Go into the terminal, and run the following:
+<img width="1072" src=https://cloud.githubusercontent.com/assets/6434237/16943416/85ec5e40-4d50-11e6-99d3-abb4ec557701.png>
 
+Now in a separate terminal, you need to start the move server
 ```
-git clone https://github.com/huacnlee/PokemonGoMove.git
-cd PokemonGoMove
+cd PokemonGoMoveAndMap
 ./start-web 
-```
-This will try to set your startup location as your current location via your IP address. Note, this will not be very accurate as the API only returns up to 4 decimal places. If this fails, it will default to a location in California. If you would like to startup with a specific location you can run the following:
-
-```
-./start-web -l 123.456 -o 78.90 
 ```
 
 You should see the debug messages below
@@ -54,22 +56,17 @@ Puma starting in single mode...
 Use Ctrl-C to stop
 ```
 
+Now in your browser go to http://localhost:3001. The default location set by the move server will be based on your IP, so it will not be very accurate. Now go ahead and enter the address, to the address you set the map originally. See screencap below:
+<img width="1072" src=https://cloud.githubusercontent.com/assets/6434237/16943599/56ad4c1a-4d51-11e6-84c0-fef003750282.png>
+
+Now your two servers are completely sync'd.
+
 ### Open foo.xcodeproj
 
 Connect your iOS device and run the project. Remember in to turn simulate location on.
 Very important: Debug->Simulate Location->PokemonLocation is checked, otherwise it will not work.
 
-### Open a web browser
+### Go back to localhost:3001
 
-Now in a web browser open http://127.0.0.1:3001, you should see the following:
+You can now interact with the webpage (try press left, up, right, down arrow keys on your keyboard) and the AppleScript will transmit the new GPS signal to the iOS device. Notice that the Pokemon map will also be updated but you will need to scroll to re-center the map.
 
-<img width="1072" src=https://cloud.githubusercontent.com/assets/6434237/16940158/bc3917d6-4d3c-11e6-896b-0d800f4971a1.png>
-
-You can now interact with the webpage (try press left, up, right, down arrow keys on your keyboard) and the AppleScript will transmit the new GPS signal to the iOS device. Now feel free to relax and play the game without moving your legs.
-
-### Crowdsourced Maps that Help You Catch all Pokemons:
-Having trouble finding new pokemons? Try looking up the following map tools to find the pokemon you are looking for!
-- [Pokecrew - Around the World] (http://www.pokecrew.com/?latitude=37.38870308649053&longitude=-122.08420737304687&zoom=14)
-- [Pokemapper - Around the World] (https://pokemapper.co/)
-- [Gotta Catch'em All - Boston] (https://www.google.com/maps/d/viewer?mid=1mA00u2SuvuNtGCifo0E-BVzTTWc)
-- [Pokemon Go Washington - Seattle Area] (https://www.google.com/maps/d/viewer?mid=136ZOge0QKEGZpWMqa9XGe_iyu6Y)
