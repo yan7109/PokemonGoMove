@@ -1,3 +1,5 @@
 foo.xcodeproj/xcuserdata/
 foo.xcodeproj/project.xcworkspace/xcuserdata
 .DS_Store
+**/*.pyc
+**/*.sh
