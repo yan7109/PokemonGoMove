@@ -4,7 +4,6 @@ set :bind, '0.0.0.0'
 set :port, 3001
 set :public_folder, Proc.new { File.join(root, "public") }
 
-
 get '/' do
   erb :index
 end
