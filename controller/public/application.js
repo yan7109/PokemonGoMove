@@ -80,6 +80,12 @@ var App = function(lat, lng) {
       },
       dataType : "JSON"
     });
+    // The following is for updating the pokemon locations
+    $.ajax({
+      type : "GET",
+      url : "http://localhost:5000/override_loc?lat=" + this.currLocation.lat + "&lon=" + this.currLocation.lng,
+      dataType : "JSON"
+    });
   };
 
   this.setNewLocation = function(location) {

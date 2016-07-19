@@ -73,7 +73,12 @@
         </div>
         <div class="col-sm-8">
             <div style="width: 20px; height: 20px; background: red; position: absolute; z-index: 100; top: 50%; left: 50%;"></div>
-            <div id="map" style="width: auto; height: 100vh;"></div>
+            <div id="map" style="width: auto; height: 50vh;"></div>
+        </div>
+        <div class="col-sm-8">
+          <iframe src="http://localhost:5000" style="width: 100%; height: 50vh;">
+            <p>Your browser does not support iframes.</p>
+          </iframe>
       </div>
     </div>
 </div>
@@ -82,8 +87,8 @@
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCXN6dSaX1uCryG1XqtdKv8NRXnDdUxYfE"></script>
     <script type="text/javascript" src="application.js"></script>
     <script type="text/javascript">
-	    var START_LATITUDE = "40.72223870000002";
-	    var START_LONGTITUDE = "-74.0052963";
+	    var START_LATITUDE = "37.3239";
+	    var START_LONGTITUDE = "-121.9144";
       $('document').ready(function() {
         $("#latitude").val(START_LATITUDE);
         $("#longitude").val(START_LONGTITUDE);
