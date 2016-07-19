@@ -30,6 +30,8 @@ If you are in China, you can specify the source via -s http://gems.ruby-china.or
 Go into the terminal, and run the following:
 
 ```
+git clone https://github.com/huacnlee/PokemonGoMove.git
+cd PokemonGoMove
 ./start-web 
 ```
 This will try to set your startup location as your current location via your IP address. Note, this will not be very accurate as the API only returns up to 4 decimal places. If this fails, it will default to a location in California. If you would like to startup with a specific location you can run the following:
