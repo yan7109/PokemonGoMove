@@ -35,6 +35,7 @@ sudo pip install -r requirements.txt
 sudo gem install sinatra
 python example.py -a google -u [gmail_address] -p [gmail_password] -l "997 Marine Drive, San Fran, CA" -st 5 -ar 2 -dp -dg
 ```
+See the [Map Readme](https://github.com/huacnlee/PokemonGoMove/blob/master/map/README.md) if you have any questions regarding the python arguments above.
 You should see the following debug message:
 ```
 [-] register_background_thread called
