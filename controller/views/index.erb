@@ -30,22 +30,20 @@
 
             <h5>Option A</h5>
             <div class="input-group">
-              <input id="address" type="text" class="form-control search-query">
+              <input id="address" type="text" class="form-control search-query" placeholder="Enter address here...">
               <span class="input-group-btn">
                 <button id="address-button" type="submit" class="btn btn-primary" data-type="last">Set</button>
               </span>
             </div>
-
-            <hr>
+            <br>
                 <h5>Option B</h5>
               Latitude: <input id="latitude" type="text" class="form-control"/>
                 <br>
               Longitude: <input id="longitude" type="text" class="form-control"/>
                                 <br>
                           <button id="location-button" class="btn btn-primary pull-right">Set</button>
+            <br>
 
-
-            <hr>
                             <h5>Option C</h5>
                 <p>Select a preset city</p>
                 <select id="location-select" class="selecter_5 selecter-element">
@@ -55,20 +53,21 @@
                   <option value="San Francisco, CA">San Francisco</option>
                   <option value="Sydney, Australia">Sydney</option>
                 </select>
-                <br>
-                <br>
                 <button id="location-change-button" class="btn btn-primary pull-right">Change location</button>
-            <hr>
-
-
+            <br>
+            <br>
             <h5>Option D:</h5>
             <p>You can use arrow keys (up, down, left, right)</p>
 
-                        <hr>
-
-
+            <br>
             <h5>Option E: </h5>
-            <p>You can drag the map</p>
+            <p>You can drag the top-right map to move</p>
+
+            <br>
+            <h5>Option F: </h5>
+            <p>You can click on a destination on the top-right map to walk there</p>
+            <button id="stop-walking" class="btn btn-primary pull-right">Stop Walking</button>
+
           </div>
         </div>
         <div class="col-sm-8">
@@ -86,15 +85,5 @@
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCXN6dSaX1uCryG1XqtdKv8NRXnDdUxYfE"></script>
     <script type="text/javascript" src="application.js"></script>
-    <script type="text/javascript">
-	    var START_LATITUDE = "37.3239";
-	    var START_LONGTITUDE = "-121.9144";
-      $('document').ready(function() {
-        $("#latitude").val(START_LATITUDE);
-        $("#longitude").val(START_LONGTITUDE);
-        $("#address").val("Enter address here...");
-        var app = new App(parseFloat(START_LATITUDE), parseFloat(START_LONGTITUDE));
-      })
-    </script>
   </body>
 </html>
