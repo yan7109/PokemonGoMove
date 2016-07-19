@@ -1,6 +1,7 @@
 # Pokemon GO GPS Emulator
 
 <img width="1072" alt="2016-07-13 11 24 07" src=https://cloud.githubusercontent.com/assets/6434237/16934702/c58e7ae4-4d0d-11e6-9103-cdb5cae5d62f.png>
+<img width="480" src=https://cloud.githubusercontent.com/assets/6434237/16934843/3a988d10-4d0f-11e6-84e6-6dffe48a9e30.PNG>
 
 This project uses Xcode Debug mode [Simulating a Location at Runtime](https://developer.apple.com/library/ios/recipes/xcode_help-debugger/articles/simulating_locations.html) to spoof GPS locations for non-jailbroken iOS devices. This allows players of Pokemon GO to send movement commands over a computer as opposed to doing the actual walking.
 
@@ -72,15 +73,3 @@ Having trouble finding new pokemons? Try looking up the following map tools to f
 - [Pokemapper - Around the World] (https://pokemapper.co/)
 - [Gotta Catch'em All - Boston] (https://www.google.com/maps/d/viewer?mid=1mA00u2SuvuNtGCifo0E-BVzTTWc)
 - [Pokemon Go Washington - Seattle Area] (https://www.google.com/maps/d/viewer?mid=136ZOge0QKEGZpWMqa9XGe_iyu6Y)
-
-### Screencaps
-
-<img width="1096" alt="2016-07-13 11 22 56" src="https://cloud.githubusercontent.com/assets/5518/16790900/2f3dc9f2-48ec-11e6-85eb-c2efa52699a7.png">
-
-<img width="1072" alt="2016-07-13 11 24 07" src="https://cloud.githubusercontent.com/assets/5518/16790916/54f0d2e8-48ec-11e6-9efc-c8d9f495a76d.png">
-
-<img width="480" src="https://ruby-china-files.b0.upaiyun.com/photo/2016/85aa2df3ded3d77143308f05a0809939.jpg!large" />
-
-### References:
-
-- https://ruby-china.org/topics/30510
