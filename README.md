@@ -1,5 +1,7 @@
 # Pokemon GO GPS Emulator
 
+<img width="1072" alt="2016-07-13 11 24 07" src=https://cloud.githubusercontent.com/assets/6434237/16934702/c58e7ae4-4d0d-11e6-9103-cdb5cae5d62f.png>
+
 This project uses Xcode Debug mode [Simulating a Location at Runtime](https://developer.apple.com/library/ios/recipes/xcode_help-debugger/articles/simulating_locations.html) to spoof GPS locations for non-jailbroken iOS devices. This allows players of Pokemon GO to send movement commands over a computer as opposed to doing the actual walking.
 
 ## Warning: Improper Use of this Tool Will Get You Banned!
@@ -60,7 +62,7 @@ Very important: Debug->Simulate Location->PokemonLocation is checked, otherwise 
 
 Now in a web browser open http://127.0.0.1:3001, you should see the following:
 
-<img width="456" alt="2016-07-13 11 22 11" src="https://cloud.githubusercontent.com/assets/5518/16790893/18843eb2-48ec-11e6-919e-40d9cfb3ca74.png">
+<img width="1072" alt="2016-07-13 11 24 07" src=https://cloud.githubusercontent.com/assets/6434237/16934702/c58e7ae4-4d0d-11e6-9103-cdb5cae5d62f.png>
 
 You can now interact with the webpage (try press left, up, right, down arrow keys on your keyboard) and the AppleScript will transmit the new GPS signal to the iOS device. Now feel free to relax and play the game without moving your legs.
 
