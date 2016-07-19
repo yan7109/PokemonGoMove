@@ -35,7 +35,32 @@ sudo pip install
 sudo gem install sinatra
 python example.py -a google -u [gmail_address] -p [gmail_password] -l "997 Marine Drive, San Fran, CA" -st 5 -ar 2 -dp -dg
 ```
-This will start the map server with your credentials, you can look at additional parameters in the [PokemonMap repo] (https://github.com/AHAAAAAAA/PokemonGo-Map) if you would like to ignore certain pokemons, change distance, etc. It would have started a server at port 5000, and you can check it will look like the following:
+You should see the following debug message:
+```
+[-] register_background_thread called
+[-] register_background_thread: not running inside Flask so not starting thread
+ * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+ * Restarting with stat
+[-] register_background_thread called
+[-] register_background_thread: initial registration
+[+] Locale is en
+ * Debugger is active!
+[+] Getting initial location
+ * Debugger pin code: 274-525-967
+[!] Your given location: 997 Marine Drive, San Fran, CA
+[!] lat/long/alt: 37.4029581 -121.9272423 0.0
+[!] Google login for: derek@polarr.co
+[+] RPC Session Token: eyJhbGciOiJSUzI1NiIsIZ ...
+[+] Received API endpoint: https://pgorelease.nianticlabs.com/plfe/40/rpc
+[+] Login successful
+[+] Username: Derderyan
+[+] You started playing Pokemon Go on: 2016-07-13 17:24:40
+[+] POKECOIN: 0
+[+] STARDUST: 6100
+[-] looping: step 1 of 25
+[+] Searching pokemons for location 37.4029581 -121.9272423
+```
+This will start the map server with your credentials, you can look at additional parameters in the [PokemonMap repo] (https://github.com/AHAAAAAAA/PokemonGo-Map) if you would like to ignore certain pokemons, change distance, etc. On your browser, localhost:5000 will look like the following:
 
 <img width="1072" src=https://cloud.githubusercontent.com/assets/6434237/16943416/85ec5e40-4d50-11e6-99d3-abb4ec557701.png>
 
@@ -45,7 +70,7 @@ cd PokemonGoMoveAndMap
 ./start-web 
 ```
 
-You should see the debug messages below
+You should see the debug messages below:
 ```
 == Sinatra (v1.4.7) has taken the stage on 3001 for development with backup from Puma
 Puma starting in single mode...
