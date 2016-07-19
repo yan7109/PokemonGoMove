@@ -2,7 +2,7 @@ var App = function(lat, lng) {
   this.init = function() {
     function initMap(){
       this.map = new google.maps.Map(document.getElementById('map'), {
-        center: {"lat": lat, "lng": lng},
+        center: {lat: lat, lng: lng},
         zoom: 16
       });
     }
@@ -13,8 +13,16 @@ var App = function(lat, lng) {
     this.listenToAddress();
     this.listenToLocation();
     this.listenToKeyPress();
+
+    $('#stop-walking').click(function(){
+      this.stopWalking();
+    }.bind(this));    
   };
 
+  this.currWalkingSteps = 0;
+  this.currWalkingInstance = null;
+  this.currWalkingInstanceMarker = null;
+  this.totalWalkingDistance = 0;
   this.map = null;
   this.currLocation = {
     lat: lat,
@@ -48,7 +56,7 @@ var App = function(lat, lng) {
   }
 
   this.locationToString = function() {
-    return this.currLocation["lat"] + ',' + this.currLocation["lng"];
+    return this.currLocation.lat + ',' + this.currLocation.lng;
   }
 
   this.updateGPSStorage = function(location) {
@@ -64,8 +72,8 @@ var App = function(lat, lng) {
       $("#address").val(address);
     });
 
-    $("#latitude").val(this.currLocation["lat"]);
-    $("#longitude").val(this.currLocation["lng"]);
+    $("#latitude").val(this.currLocation.lat);
+    $("#longitude").val(this.currLocation.lng);
 
     updateMap.bind(this)(this.currLocation);
   };
@@ -94,9 +102,80 @@ var App = function(lat, lng) {
     this.updateGPX();
   };
 
+  this.walkingToDestination = function(origin, destination) {
+    // Latitude: 1 deg = 110.574 km
+    // Longitude: 1 deg = 111.320*cos(latitude) km
+
+    // reset if another destination is chosen
+    clearInterval(this.currWalkingInstance);
+
+    // reset if another destination is chosen
+    if (this.currWalkingInstanceMarker) {
+      this.currWalkingInstanceMarker.setMap(null);
+    }
+
+    // set marker
+    this.currWalkingInstanceMarker = new google.maps.Marker({
+      position: destination,
+      map: this.map,
+      title: 'Destination'
+    });
+
+    // calculate coordinates differences
+    var latDiff = destination.lat() - origin.lat();
+    var lngDiff = destination.lng() - origin.lng();
+
+    // calculate distance in meters using google maps api
+    // assume you can run 5 m/s, that's 18km/hr, pretty fast but reasonable
+    var service = new google.maps.DistanceMatrixService();
+    service.getDistanceMatrix({
+      origins: [origin],
+      destinations: [destination],
+      travelMode: google.maps.TravelMode.WALKING
+    }, function(response) {
+      var results = response.rows[0].elements;
+      var plannedDistance = results[0].distance.value;
+      var steps = plannedDistance / 5
+
+      var latPerStep = latDiff / steps;
+      var lngPerStep = lngDiff / steps;
+
+      this.currWalkingSteps = 0;
+
+      this.currWalkingInstance = setInterval(function() {
+        this.totalWalkingDistance += 5;
+        this.currWalkingSteps++;
+
+        this.currLocation = {
+          lat: this.currLocation.lat + latPerStep,
+          lng: this.currLocation.lng + lngPerStep
+        };
+
+        this.setNewLocation(this.currLocation);
+
+        if (this.currWalkingSteps > steps) {
+          clearInterval(this.currWalkingInstance);
+          this.currWalkingInstanceMarker.setMap(null);
+        }
+      }.bind(this), 1000); // 5 m/s
+    }.bind(this));
+  };
+
+  this.stopWalking = function() {
+    clearInterval(this.currWalkingInstance);
+
+    if (this.currWalkingInstanceMarker) {
+      this.currWalkingInstanceMarker.setMap(null);
+    }
+  };
+
   this.listenToMapChange = function() {
     this.map.addListener('mouseup', function() {
       this.setNewLocation({lat: this.map.getCenter().lat(), lng: this.map.getCenter().lng()});
+    }.bind(this));
+
+    this.map.addListener('click', function(event) {
+      this.walkingToDestination(this.map.getCenter(), event.latLng);
     }.bind(this));
   };
 
@@ -120,7 +199,7 @@ var App = function(lat, lng) {
 
   this.listenToLocation = function() {
     $("#location-button").click(function(){
-      this.setNewLocation({'lat':parseFloat($('#latitude').val()), "lng":parseFloat($('#longitude').val())});
+      this.setNewLocation({lat:parseFloat($('#latitude').val()), lng:parseFloat($('#longitude').val())});
     }.bind(this));
   };
 
@@ -144,8 +223,7 @@ var App = function(lat, lng) {
         location.lat -= moveInterval();
       }
 
-      // return location in {"lat" : lat, "lng" : lng} format
-      return {"lat": location.lat, "lng": location.lng};
+      return {lat: location.lat, lng: location.lng};
     }
 
     $(document).keyup(function(e){
@@ -174,3 +252,13 @@ var App = function(lat, lng) {
 
   this.init();
 };
+
+$('document').ready(function() {
+  var START_LATITUDE = "37.3239";
+  var START_LONGTITUDE = "-121.9144";
+  $("#latitude").val(START_LATITUDE);
+  $("#longitude").val(START_LONGTITUDE);
+  //$("#address").val("Enter address here...");
+  var app = new App(parseFloat(START_LATITUDE), parseFloat(START_LONGTITUDE));
+})
+

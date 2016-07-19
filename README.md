@@ -96,3 +96,18 @@ Very important: Debug->Simulate Location->PokemonLocation is checked, otherwise 
 
 You can now interact with the webpage (try press left, up, right, down arrow keys on your keyboard) and the AppleScript will transmit the new GPS signal to the iOS device. Notice that the Pokemon map will also be updated but you will need to scroll to re-center the map.
 
+### Start Playing!
+- Enter an address
+- Or enter GPS coordinates
+- Press the arrow keys on the keyboard to move around
+- Or move the map on the top right corner to move around
+- Or click on the map on the top right corner to a location you want to walk to
+- Look at all the pokemons, pokestops, gyms around you on the map at the bottom right corner
+
+### Check if Pokemon Go servers are down
+
+Sometimes you are wondering if you got banned or the servers are down. Check via this [link] (http://www.mmoserverstatus.com/pokemon_go)
+
+### Other references
+- Pokemon Rarity
+  ![Rare](https://codeforx-photos.s3.amazonaws.com/08f53eda-bb36-4c52-8f9a-64cbfb3e0061_df36a6d5-cbff-47f3-a505-85dee758b400.jpeg)
