@@ -1,94 +1,65 @@
 <!doctype html>
 <html>
-<head>
-<meta charset="utf-8">
-<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0;" name="viewport" />
-<title>Pokemon Go Web Interface</title>
-<style type="text/css">
-  .buttons { margin-top: 20px; width: 300px; text-align: center; }
-  .buttons .move-btn { padding: 40px 40px; margin: 10px; }
-  .buttons .btn-center { margin: 10px auto; display: block; }
-</style>
-<script type="text/javascript" src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
-<script type="text/javascript">   
-	var START_LATITUDE = "37.3239";
-	var START_LONGTITUDE = "-121.9144";
-	function moveInterval() {
-		var randomNum = parseInt(20 * Math.random());
-		var number = "0.000" + (10 + randomNum);
-		console.log("moveInterval:" + number);
-		return parseFloat(number);
-	}
-	function changeCurrentLocation(direction) {
-		var longitude = parseFloat($("#longitude").val());
-		var latitude = parseFloat($("#latitude").val());
+  <head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
+    <title>Pokemon Go GPS Controller</title>
+    <style type="text/css">
+      .buttons { margin-top: 20px; width: 300px; text-align: center; }
+      .buttons .move-btn { padding: 40px 40px; margin: 10px; }
+      .buttons .btn-center { margin: 10px auto; display: block; }
+    </style>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCXN6dSaX1uCryG1XqtdKv8NRXnDdUxYfE"></script>
+    <script type="text/javascript" src="application.js"></script>
+    <script type="text/javascript">
+	    var START_LATITUDE = "12";
+	    var START_LONGTITUDE = "34";
+      $('document').ready(function() {
+        $("#latitude").val(START_LATITUDE);
+        $("#longitude").val(START_LONGTITUDE);
+        $("#address").val("Enter address here...");
+        var app = new App(parseFloat(START_LATITUDE), parseFloat(START_LONGTITUDE));
+      })      
+    </script>       
+  </head>
+  <body>
+    <div style="display: flex; flex-direction: row">
+      <div style="flex: 1">
 
-		if (direction == "left") {
-			longitude -= moveInterval();
-		} else if (direction == "right") {
-			longitude += moveInterval();
-		} else if (direction == "up") {
-			latitude += moveInterval();
-		}  else if (direction == "down") {
-			latitude -= moveInterval();
-		}
-		return {"lat" : latitude, "lon" : longitude};
-	}
-	$('document').ready(function() {
-		$("#latitude").val(START_LATITUDE);
-		$("#longitude").val(START_LONGTITUDE);
-  })
-	$(function(){
-		$(document).keydown(function(e) {
-			var dir = ''
-			if (e.which == 37) {
-				dir = 'left';
-			} else if (e.which == 38) {
-				dir = 'up';
-			} else if (e.which == 39) {
-				dir = 'right';
-			} else if (e.which == 40) {
-				dir = 'down';
-			}
-			var location = changeCurrentLocation(dir);    
-			$("#longitude").val(location["lon"]);
-			$("#latitude").val(location["lat"]);
-			$.ajax({
-				type : "POST",
-				url : "/update",
-				data : location,
-				dataType : "JSON",
-				success : function (data) {}
-			});
-		});
-		$(".move-btn").click(function(){
-			var direction = $(this).data('direction');
-			var location = changeCurrentLocation(direction);
-			$("#longitude").val(location["lon"]);
-			$("#latitude").val(location["lat"]);
-			$.ajax({
-				type : "POST",
-				url : "/update",
-				data : location,
-				dataType : "JSON",
-				success : function (data) {
+        <h5>Option A: You can enter an address</h5>
+        <div>
+          Address: <input id="address" type="text"/>
+        </div>
+        <button id="address-button">Set</button>
 
-				}
-			});
-		});
-	});
-</script>
-</head>
-<body>
-	<div>
-		Latitude：<input id="latitude" type="text"/>
-		Longitude：<input id="longitude" type="text"/>
-	</div>
-	<div class="buttons">
-    <button class="move-btn btn-center" data-direction="up">Up</button>
-    <button class="move-btn" data-direction="left">Left</button>
-    <button class="move-btn" data-direction="right">Right</button>
-    <button class="move-btn btn-center" data-direction="down">Down</button>
-	</div>
-</body>
+        <h5>Option B: You can set your own GPS coordinates (in decimals)</h5>
+        <div>
+          Latitude: <input id="latitude" type="text"/>
+          Longitude: <input id="longitude" type="text"/>
+        </div>
+        <button id="location-button">Set</button>
+
+        <h5>Option C: You can select a preset city</h5>
+        <select id="location-select">
+          <option value="London, UK">London</option>
+          <option value="Los Angeles, CA">Los Angeles</option>
+          <option value="New York, NY">New York</option>
+          <option value="San Francisco, CA">San Francisco</option>
+          <option value="Sydney, Australia">Sydney</option>
+        </select>
+        <br>
+        <button id="location-change-button">Change location</button>
+
+        <h5>Option D: You can use arrow keys (up, down, left, right)</h5>
+
+        <h5>Option E: You can drag the map</h5>
+      </div>
+
+      <div style="flex: 1">
+      <div style="width: 20px; height: 20px; background: red; position: relative; z-index: 100; top: 240px; left: 240px;"></div>
+        <div id="map" style="width: 500px; height: 500px;"></div>
+      </div>
+    </div>
+  </body>
 </html>
