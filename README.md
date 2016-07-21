@@ -23,14 +23,16 @@ The latest repo has a startup routine that sets your startup location to be your
 
 - Xcode installed (Obviously you need a Mac, an Apple Developer Account is not needed if you have iOS 9 and above)
 - Any iOS device with Pokemon GO installed
+- Google Chrome as your browser
 
 ## Installation Instructions
 
 ### Start web servers
 
 ```bash
-git clone https://github.com/yan7109/PokemonGoMoveAndMap.git
+git clone https://github.com/huacnlee/PokemonGoMove.git
 cd PokemonGoMoveAndMap/map
+sudo easy_install pip # If you do not have pip
 sudo pip install -r requirements.txt
 sudo gem install sinatra
 python example.py -a google -u [gmail_address] -p [gmail_password] -l "997 Marine Drive, San Fran, CA" -st 5 -ar 2 -dp -dg
@@ -91,6 +93,8 @@ Now your two servers are completely sync'd.
 
 Connect your iOS device and run the project. Remember in to turn simulate location on.
 Very important: Debug->Simulate Location->PokemonLocation is checked, otherwise it will not work.
+
+For the very first time of running the project, you will need to allow add terminal to be accessible. System Preferences > Security & Privacy > Privacy > Accessibility > Terminal (checked)
 
 ### Go back to localhost:3001
 
