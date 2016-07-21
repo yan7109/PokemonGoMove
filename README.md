@@ -32,6 +32,7 @@ The latest repo has a startup routine that sets your startup location to be your
 ```bash
 git clone https://github.com/huacnlee/PokemonGoMove.git
 cd PokemonGoMoveAndMap/map
+sudo easy_install pip # If you do not have pip
 sudo pip install -r requirements.txt
 sudo gem install sinatra
 python example.py -a google -u [gmail_address] -p [gmail_password] -l "997 Marine Drive, San Fran, CA" -st 5 -ar 2 -dp -dg
