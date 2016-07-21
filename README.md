@@ -23,6 +23,7 @@ The latest repo has a startup routine that sets your startup location to be your
 
 - Xcode installed (Obviously you need a Mac, an Apple Developer Account is not needed if you have iOS 9 and above)
 - Any iOS device with Pokemon GO installed
+- Google Chrome as your browser
 
 ## Installation Instructions
 
@@ -91,6 +92,8 @@ Now your two servers are completely sync'd.
 
 Connect your iOS device and run the project. Remember in to turn simulate location on.
 Very important: Debug->Simulate Location->PokemonLocation is checked, otherwise it will not work.
+
+For the very first time of running the project, you will need to allow add terminal to be accessible. System Preferences > Security & Privacy > Privacy > Accessibility > Terminal (checked)
 
 ### Go back to localhost:3001
 
